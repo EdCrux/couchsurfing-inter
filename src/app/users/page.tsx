@@ -11,14 +11,11 @@ const getData = async () => {
 
 export default async function () {
     const users = await getData();
-    return <div className="grid">
-
+    return <div className="grid grid-cols-2 justify-items-center gap-2">
         {
             users.map((user : User) => {
                 return <UserCard user={user} key={user.id}/>
             })
         }
     </div>
-    
-    return <h1>YES</h1>
 }

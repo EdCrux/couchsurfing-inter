@@ -7,7 +7,7 @@ import { DataBaseError } from '../errors/errors';
  */
 
 
-// TODO: If there's time left I woudl implement the friends step.
+// TODO: If there's enough time left I would implement the friends step.
 type Friend = { user_id: number }
 
 export interface User {
@@ -26,7 +26,7 @@ async function findMany () : Promise<User[]> {
     return usersMockData
 }
 
-function findFirst (query : Query) : User {
+async function findFirst (query : Query) : Promise<User> {
 
     if (query === undefined) {
         throw new DataBaseError("Missing argument: query")
@@ -37,7 +37,7 @@ function findFirst (query : Query) : User {
     if (id === -1) { 
         return {} 
     }
-    console.log("Yes", usersMockData)
+
     return usersMockData.map((user: User) => {
         if (user.id === id) {
             return user
