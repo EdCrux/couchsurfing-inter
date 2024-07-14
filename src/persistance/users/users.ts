@@ -1,11 +1,9 @@
 
 import usersMockData from './users-mock-data';
-import { DataBaseError } from '../errors/errors';
 
 /**
  * Basic example of a user.
  */
-
 
 // TODO: If there's enough time left I would implement the friends step.
 type Friend = { user_id: number }
@@ -27,15 +25,19 @@ async function findMany () : Promise<User[]> {
 }
 
 async function findFirst (query : Query) : Promise<User> {
-    console.log(query)
+    
     if (query === undefined) {
-        throw new DataBaseError("Missing argument: query")
+        throw new Error("Missing argument: query")
     }
     const { where } = query ?? {}
     const { id } = where ?? -1
 
-    if (id === -1) { 
+    if (id === -1 || id === undefined) { 
         return {} 
+    }
+
+    if (id > usersMockData.length) {
+        return {}
     }
     const indexedData = indexData()
     return indexedData.get(id)

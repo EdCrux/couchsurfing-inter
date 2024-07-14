@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic'
+
 import UserCard from "../components/user-card"
 
 interface Props {
