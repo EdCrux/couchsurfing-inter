@@ -27,7 +27,7 @@ async function findMany () : Promise<User[]> {
 }
 
 async function findFirst (query : Query) : Promise<User> {
-
+    console.log(query)
     if (query === undefined) {
         throw new DataBaseError("Missing argument: query")
     }
@@ -37,14 +37,18 @@ async function findFirst (query : Query) : Promise<User> {
     if (id === -1) { 
         return {} 
     }
+    const indexedData = indexData()
+    return indexedData.get(id)
 
-    return usersMockData.map((user: User) => {
-        if (user.id === id) {
-            return user
-        } else {
-            return null
-        }
-    })[0]
+
+}
+
+const indexData = () => {
+    const indexedData = new Map()
+    usersMockData.forEach((user: User) => {
+        indexedData.set(user.id, user)
+    })
+    return indexedData
 }
 
 

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import UserCard from "../components/user-card"
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const getData= async (id : string) => {    
+    console.log(id)
     const response = await fetch(`http://localhost:3000/api/users/${id}`)
     return response.json()
 }

@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findFirst } from "@/persistance";
 
- export async function GET ( { params}: {params: {id : string}}) {
+ export async function GET (request : NextRequest, { params}: {params: {id : string}}) {
 
     // In this case the ideal case is to focus on validate the data.
     const {id } = params ?? ''
